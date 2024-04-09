@@ -14,14 +14,14 @@ def browser(request):
     browser_language = request.config.getoption("language")
     browser = None
       ##  Надстройка для Chrome
-    options = Options()
-    options.add_experimental_option('prefs', {'intl.accept_languages': browser_language})
+    options_chrome = Options()
+    options_chrome.add_experimental_option('prefs', {'intl.accept_languages': browser_language})
       ##  Надстройка для Firefox
     options_firefox = OptionsFirefox()
     options_firefox.set_preference("intl.accept_languages", browser_language)
     if browser_name == "Chrome":
         print("\nstart Chrome browser for test..")
-        browser = webdriver.Chrome(options=options)
+        browser = webdriver.Chrome(options=options_chrome)
     elif browser_name == "Firefox":
         print("\nstart Firefox browser for test..")
         browser = webdriver.Firefox(options=options_firefox)
